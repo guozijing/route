@@ -11,12 +11,12 @@ type Node struct {
 }
 
 type UG struct {
-	Nodes map[int]*Node
+	Nodes map[int64]*Node
 }
 
 func NewUG() *UG {
 	return &UG{
-		Nodes: make(map[int]*Node),
+		Nodes: make(map[int64]*Node),
 	}
 }
 
