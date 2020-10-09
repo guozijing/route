@@ -29,8 +29,7 @@ func (ug *UG) AddNode(n *Node) error {
 }
 
 func (ug *UG) AddNodes(n int64) {
-	i int64 = 0
-	for i < n; i++ {
+	for i := (int64)0; i < n; i++ {
 		ug.Nodes[i] = &Node{Key: i}
 	}
 }
