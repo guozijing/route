@@ -51,22 +51,22 @@ func (ug *UG) AddMap(from int, tos []int, toValues []float64) error {
 }
 
 func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
-	ok1 := ug.Nodes[from]
-	ok2 := ug.Nodes[to]
+	_, ok1 := ug.Nodes[from]
+	_, ok2 := ug.Nodes[to]
 	if !ok1 || !ok2 {
-		return nil, nil, errors.New("The node should be exited")
+		return nil, errors.New("The node should be exited")
 	}
 
 	var isVisited []bool
-	for i := range len(ug.Nodes) - 1 {
+	for i := range (len(ug.Nodes) - 1) {
 		isVisited = append(isVisited, false)
 	}
 
 	var resM = make(map[int][]int)
 	num := 0
 
-	var dfs func(path []int, t int, visited map[int]bool)
-	dfs = func(path []int, t int, visited map[int]bool) {
+	var dfs func(path []int, t int, visited []bool)
+	dfs = func(path []int, t int, visited []bool) {
 		if t == to {
 			resM[num] = append(path, t)
 			num++
