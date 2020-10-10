@@ -58,7 +58,7 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 	}
 
 	var isVisited []bool
-	for i := range (len(ug.Nodes) - 1) {
+	for i := 0; i < len(ug.Nodes); i++ {
 		isVisited = append(isVisited, false)
 	}
 
