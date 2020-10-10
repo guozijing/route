@@ -2,7 +2,6 @@ package route
 
 import (
 	"errors"
-	"github.com/guozijing/stack"
 )
 
 type Node struct {
@@ -51,25 +50,36 @@ func (ug *UG) AddMap(from int, tos []int, toValues []float64) error {
 	return nil
 }
 
-func (ug *UG) GetRoutes(from int, to int) (map[int][]int, []float64, error) {
+func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 	ok1 := ug.Nodes[from]
 	ok2 := ug.Nodes[to]
 	if !ok1 || !ok2 {
 		return nil, nil, errors.New("The node should be exited")
 	}
 
-	var isVisited = make(map[int]bool)
-	var temp []int
+	var isVisited []bool
+	for i := range len(ug.Nodes) - 1 {
+		isVisited = append(isVisited, false)
+	}
+
 	var resM = make(map[int][]int)
-	var resV []float64
+	num := 0
 
-	st := stack.New()
-	st.Push(from)
-	isVisited[from] = true
-
-	for {
-		if st.IsEmpty() == true {
-			break
+	var dfs func(path []int, t int, visited map[int]bool)
+	dfs = func(path []int, t int, visited map[int]bool) {
+		if t == to {
+			resM[num] = append(path, t)
+			num++
+			return
+		}
+		if visited[t] == true {
+			return
+		}
+		for _, v := range ug.Nodes[t].MMap {
+			visited[t] = true
+			dfs(append(path, t), v, visited)
 		}
 	}
+	dfs([]int{}, from, isVisited)
+	return resM, nil
 }
