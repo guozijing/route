@@ -57,6 +57,11 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 		return nil, errors.New("The node should be exited")
 	}
 
+        var isVisited []bool
+        for i := 0; i < len(ug.Nodes); i++ {
+                isVisited = append(isVisited, false)
+        }
+
 	var resM = make(map[int][]int)
 	num := 0
 
@@ -71,10 +76,12 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 			return
 		}
 		for _, v := range ug.Nodes[t].MMap {
-			visited[t] = true
-			dfs(append(path, t), v, visited)
+			temp = make([]bool, len(visited))
+			temp = visited
+			temp[t] = true
+			dfs(append(path, t), v, temp)
 		}
 	}
-	dfs([]int{}, from, [len(ug.Nodes)]bool{false})
+	dfs([]int{}, from, isVisited)
 	return resM, nil
 }
