@@ -75,6 +75,6 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 			dfs(append(path, t), v, visited)
 		}
 	}
-	dfs([]int{}, from, []bool{false, len(ug.Nodes)})
+	dfs([]int{}, from, [len(ug.Nodes)]bool{false})
 	return resM, nil
 }
