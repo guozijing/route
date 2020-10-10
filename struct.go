@@ -76,7 +76,7 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 			return
 		}
 		for _, v := range ug.Nodes[t].MMap {
-			temp = make([]bool, len(visited))
+			var temp = make([]bool, len(visited))
 			temp = visited
 			temp[t] = true
 			dfs(append(path, t), v, temp)
