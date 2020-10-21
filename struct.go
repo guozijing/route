@@ -7,7 +7,6 @@ import (
 type Node struct {
 	Key int
 	MMap []int
-	MValue []float64
 }
 
 type UG struct {
@@ -34,7 +33,7 @@ func (ug *UG) AddNodes(n int) {
 	}
 }
 
-func (ug *UG) AddMap(from int, tos []int, toValues []float64) error {
+func (ug *UG) AddMap(from int, tos []int) error {
 	if _, ok := ug.Nodes[from]; !ok {
 		return errors.New("The node should be exited")
 	}
@@ -43,9 +42,6 @@ func (ug *UG) AddMap(from int, tos []int, toValues []float64) error {
 			return errors.New("The node should be exited")
 		}
 		ug.Nodes[from].MMap = append(ug.Nodes[from].MMap, to)
-	}
-	for _, toValue := range toValues {
-		ug.Nodes[from].MValue = append(ug.Nodes[from].MValue, toValue)
 	}
 	return nil
 }
