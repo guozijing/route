@@ -72,7 +72,7 @@ func (ug *UG) AddMapFromFile(fileName string) error {
 		return err
 	}
 
-	for _, fromTos := range c {
+	for _, fromTos := range c.Graph {
 		err := ug.AddMap(fromTos.Index, fromTos.LinkTo)
 		if err != nil {
 			return err
