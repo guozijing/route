@@ -61,7 +61,7 @@ func (ug *UG) AddMap(from int, tos []int) error {
 func (ug *UG) AddMapFromFile(fileName string) error {
 	var content []byte
 	var err error
-	content, err = file_get_contents(path)
+	content, err = file_get_contents(fileName)
 	if err != nil {
 		return err
 	}
@@ -73,7 +73,7 @@ func (ug *UG) AddMapFromFile(fileName string) error {
 	}
 
 	for _, fromTos := range c {
-		err := AddMap(fromTos.Index, fromTos.LinkTo)
+		err := ug.AddMap(fromTos.Index, fromTos.LinkTo)
 		if err != nil {
 			return err
 		}
