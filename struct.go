@@ -100,7 +100,6 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 
 	var dfs func(path []int, t int, visited []bool)
 	dfs = func(path []int, t int, visited []bool) {
-		fmt.Println(path, t, to, t == to)
                 if t == to {
 			var path_t []int
 			for _, p := range path {
