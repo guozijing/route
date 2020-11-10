@@ -101,8 +101,9 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 
 	var dfs func(path []int, t int, visited []bool)
 	dfs = func(path []int, t int, visited []bool) {
+		append(path, t)
 		if t == to {
-			resM[num] = append(path, t)
+			resM[num] = append(path)
 			num++
 			return
 		}
@@ -116,7 +117,7 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 			}
 			temp[t] = true
 			fmt.Println(path, v, temp[v])
-			dfs(append(path, t), v, temp)
+			dfs(path, v, temp)
 		}
 	}
 	dfs([]int{}, from, isVisited)
