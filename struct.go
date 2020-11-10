@@ -1,7 +1,6 @@
 package simpleRoute
 
 import (
-	"fmt"
 	"errors"
 	"os"
 	"io/ioutil"
@@ -109,8 +108,6 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 			}
 			path_t = append(path_t, t)
                         resM[num] = path_t
-			fmt.Println(path_t)
-			fmt.Println(resM[num])
                         num++
                         return
                 }
@@ -123,7 +120,6 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
                                 temp = append(temp, tf)
                         }
                         temp[t] = true
-			fmt.Println(t, v)
                         dfs(append(path, t), v, temp)
                 }
 		return
