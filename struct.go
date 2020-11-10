@@ -129,7 +129,6 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 		return
         }
 	dfs([]int{}, from, isVisited)
-        fmt.Println(res)
 	return resM, nil
 }
 
