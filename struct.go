@@ -115,7 +115,7 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 				temp = append(temp, tf)
 			}
 			temp[t] = true
-			fmt.Println(path)
+			fmt.Println(path, v, temp[v])
 			dfs(append(path, t), v, temp)
 		}
 	}
