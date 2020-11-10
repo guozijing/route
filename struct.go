@@ -101,7 +101,7 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 
 	var dfs func(path []int, t int, visited []bool)
 	dfs = func(path []int, t int, visited []bool) {
-		path_t = append(path, t)
+		path_t := append(path, t)
 		if t == to {
 			resM[num] = append(path)
 			num++
