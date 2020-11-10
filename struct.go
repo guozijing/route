@@ -102,20 +102,20 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
 	var dfs func(path []int, t int, visited []bool)
 	dfs = func(path []int, t int, visited []bool) {
 		path_t := append(path, t)
+		var temp []bool
+		for _, tf := range visited {
+			temp = append(temp, tf)
+		}
+		temp[t] = true
 		if t == to {
 			resM[num] = append(path_t)
 			num++
 			return
 		}
-		if visited[t] == true {
-			return
-		}
 		for _, v := range ug.Nodes[t].MMap {
-			var temp []bool
-			for _, tf := range visited {
-				temp = append(temp, tf)
+			if visited[v] == true {
+				return
 			}
-			temp[t] = true
 			fmt.Println(path_t, v, temp[v])
 			dfs(path_t, v, temp)
 		}
