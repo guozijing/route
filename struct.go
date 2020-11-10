@@ -106,7 +106,9 @@ func (ug *UG) GetRoutes(from int, to int) (map[int][]int, error) {
                 if t == to {
 			path_t := append(path, t)
                         resM[num] = path_t
-			res = path_t
+			if num == 0 {
+				res = path_t
+			}
 			fmt.Println(path_t)
 			fmt.Println(resM[num])
                         num++
