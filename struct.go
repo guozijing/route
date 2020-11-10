@@ -1,6 +1,7 @@
 package simpleRoute
 
 import (
+	"fmt"
 	"errors"
 	"os"
 	"io/ioutil"
